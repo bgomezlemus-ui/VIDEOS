@@ -15,9 +15,9 @@ perfil.
 - **Referencia guardada:** `assets/character/personaje-referencia.jpg`
 - **Origen:** avatar de IA (marca de agua "descript" en el clip original).
 
-> ⚠️ **Importante:** yo **no genero** este personaje hablando por sí mismo. El
-> avatar y su voz se crean con una herramienta de IA de avatares (ver sección 4).
-> Yo guardo la referencia y aplico la **edición**.
+> ✅ **Flujo acordado:** TÚ generas el clip del avatar hablando tu guion (en
+> Descript o donde creaste el original) y me lo pasas. YO aplico toda la
+> edición automáticamente. La referencia visual se guarda solo para consistencia.
 
 ## 2. 🎙️ Voz
 
@@ -47,28 +47,31 @@ Estos elementos se aplican automáticamente:
 - `ring` → anillo de porcentaje (ej. "13%")
 - `bar` → barra de porcentaje (ej. "86%+")
 
-## 4. 🔄 Flujo para un video nuevo
+## 4. 🔄 Flujo para un video nuevo (acordado)
 
 ```
-Tú:  "Argumento / guion del nuevo video + datos clave"
+ [TÚ]  Generas el clip del avatar hablando tu guion
+       + me pasas el .mp4 y me dices los datos clave / argumento
         │
         ▼
- [Paso A] Generar el clip del personaje hablando el guion
-          (avatar IA + voz clonada)  ← requiere herramienta de IA
+ [YO]  Copio el clip a public/  →  creo el archivo de datos en
+       src/videos/  →  registro la <Composition> en Root.tsx
         │
         ▼
- [Paso B] Copiar el clip a public/  →  crear archivo de datos en
-          src/videos/  →  registrar <Composition> en Root.tsx
+ [YO]  Renderizo con Remotion (aplica este estilo automáticamente)
         │
         ▼
- [Paso C] Renderizar con Remotion (aplica este estilo automáticamente)
-        │
-        ▼
-     Video final en out/
+     Video final en out/  →  te lo entrego para previsualizar
 ```
 
-- **Paso A** es lo único que necesita una herramienta externa de IA de avatares.
-- **Pasos B y C** ya están automatizados con la plantilla.
+### Qué necesito de ti cada vez
+1. **El clip** del avatar hablando (arrástralo al chat).
+2. **Los datos/estadísticas** a resaltar (o me dices "sácalos de los subtítulos"
+   y los leo yo del propio clip).
+3. (Opcional) Ajustes de textos: título del tema, marca, frase de cierre.
+
+Con eso, todo lo demás (recorte, fondo, marca, gráficos animados, cierre,
+render) es automático.
 
 ## 5. 📄 Plantilla de datos (copiar y rellenar)
 
