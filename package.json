@@ -1,0 +1,32 @@
+{
+  "name": "remotion-videos",
+  "version": "1.0.0",
+  "description": "Remotion video editing setup with FFmpeg",
+  "type": "module",
+  "scripts": {
+    "start": "remotion preview",
+    "build": "remotion render src/index.tsx out/video.mp4",
+    "test": "remotion test",
+    "render": "remotion render"
+  },
+  "dependencies": {
+    "remotion": "^4.0.171",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config": "^4.0.171",
+    "ffmpeg-static": "^5.2.0",
+    "typescript": "^5.3.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/node": "^20.10.0"
+  },
+  "remotion": {
+    "videoCodec": "h264",
+    "audioCodec": "aac",
+    "fps": 30,
+    "width": 1920,
+    "height": 1080
+  }
+}
