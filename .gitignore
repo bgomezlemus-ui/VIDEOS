@@ -11,6 +11,3 @@ build
 out/
 .cache
 .remotion
-
-# Intermedios de TTS
-assets/tts/
