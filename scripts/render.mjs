@@ -30,20 +30,25 @@ const browserExecutable = detectBrowser();
 
 const args = process.argv.slice(2);
 let compositionId = 'HelloWorld';
-let outputPath = path.join(outDir, 'video.mp4');
+let outputArg = null;
 
-for (let i = 0; i < args.length; i++) {
-	if (args[i] === '--composition' && args[i + 1]) {
-		compositionId = args[i + 1];
-		i++;
+// Soporta tanto "--flag valor" como "--flag=valor".
+const readFlag = (name) => {
+	for (let i = 0; i < args.length; i++) {
+		if (args[i] === name && args[i + 1]) return args[i + 1];
+		if (args[i].startsWith(`${name}=`)) return args[i].slice(name.length + 1);
 	}
-	if (args[i] === '--output' && args[i + 1]) {
-		outputPath = path.isAbsolute(args[i + 1])
-			? args[i + 1]
-			: path.join(projectRoot, args[i + 1]);
-		i++;
-	}
-}
+	return null;
+};
+
+compositionId = readFlag('--composition') || compositionId;
+outputArg = readFlag('--output');
+
+const outputPath = outputArg
+	? path.isAbsolute(outputArg)
+		? outputArg
+		: path.join(projectRoot, outputArg)
+	: path.join(outDir, 'video.mp4');
 
 console.log('\n🎬 Remotion Render');
 console.log('==================\n');
