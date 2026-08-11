@@ -1,6 +1,7 @@
 import React from 'react';
 import {
 	AbsoluteFill,
+	Audio,
 	Img,
 	staticFile,
 	interpolate,
@@ -208,7 +209,7 @@ const CountChip: React.FC<{
 	accent: string;
 }> = ({ start, end, value, prefix = '', label, row, accent }) => {
 	const frame = useCurrentFrame();
-	const localStart = start + row * 10;
+	const localStart = start;
 	const o = useWindow(localStart, end);
 	const enter = spring({
 		frame: frame - localStart,
@@ -328,28 +329,31 @@ const Outro: React.FC<{ start: number }> = ({ start }) => {
 export const Elecciones2027: React.FC = () => {
 	return (
 		<AbsoluteFill>
+			{/* Locución sincronizada (voz IA local — espeak-ng, español) */}
+			<Audio src={staticFile('narration.wav')} />
+
 			<Background />
 			<CharacterCard />
 			<BrandPanel />
 
-			{/* Beat 1: 0.0–2.5s (0–75) */}
-			<Pill text="⚡ YA EMPIEZA" start={4} end={78} color={COLORS.gold} />
-			<Headline start={8} end={74} title="La elección más|grande" sub="desde 2024" accent={COLORS.gold} />
+			{/* Beat 1 · "Arranca la elección más grande desde 2024." (frames 9–128) */}
+			<Pill text="⚡ YA EMPIEZA" start={9} end={132} color={COLORS.gold} />
+			<Headline start={14} end={128} title="La elección más|grande" sub="desde 2024" accent={COLORS.gold} />
 
-			{/* Beat 2: 2.5–7.0s (75–210) */}
-			<Pill text="🗓️ 10 DE SEPTIEMBRE" start={80} end={208} color={COLORS.teal} />
-			<Headline start={84} end={206} kicker="ARRANCA EL PROCESO" title="10 de|septiembre" accent={COLORS.teal} />
-			<SideNote start={92} end={206} title="…pero no se vota ese día" sub="Es solo el inicio del proceso electoral" accent={COLORS.teal} />
+			{/* Beat 2 · "El 10 de septiembre, pero no se vota ese día." (frames 138–246) */}
+			<Pill text="🗓️ 10 DE SEPTIEMBRE" start={138} end={250} color={COLORS.teal} />
+			<Headline start={142} end={246} kicker="ARRANCA EL PROCESO" title="10 de|septiembre" accent={COLORS.teal} />
+			<SideNote start={168} end={246} title="…pero no se vota ese día" sub="Es solo el inicio del proceso electoral" accent={COLORS.teal} />
 
-			{/* Beat 3: 7.0–14.0s (210–420) */}
-			<Pill text="🗳️ 6 JUNIO 2027" start={212} end={418} color={COLORS.gold} />
-			<Headline start={216} end={416} kicker="SE RENUEVAN" title="Cargos en|todo el país" accent={COLORS.gold} />
-			<CountChip start={228} end={416} value={500} label="Diputaciones federales" row={0} accent={COLORS.teal} />
-			<CountChip start={228} end={416} value={17} label="Gubernaturas" row={1} accent={COLORS.gold} />
-			<CountChip start={228} end={416} value={32} label="Congresos locales" row={2} accent={COLORS.teal} />
+			{/* Beat 3 · "El 6 de junio de 2027 se renuevan 500 diputaciones, 17 gubernaturas, congresos locales…" (frames 256–559) */}
+			<Pill text="🗳️ 6 JUNIO 2027" start={256} end={562} color={COLORS.gold} />
+			<Headline start={260} end={559} kicker="SE RENUEVAN" title="Cargos en|todo el país" accent={COLORS.gold} />
+			<CountChip start={360} end={562} value={500} label="Diputaciones federales" row={0} accent={COLORS.teal} />
+			<CountChip start={420} end={562} value={17} label="Gubernaturas" row={1} accent={COLORS.gold} />
+			<CountChip start={470} end={562} value={32} label="Congresos locales" row={2} accent={COLORS.teal} />
 
-			{/* Beat 4: 14.0–18.0s (420–540) */}
-			<Outro start={422} />
+			{/* Beat 4 · "Son más de mil cargos en total. Guarda la fecha." (frames 570–690) */}
+			<Outro start={570} />
 
 			<ProgressBar />
 		</AbsoluteFill>

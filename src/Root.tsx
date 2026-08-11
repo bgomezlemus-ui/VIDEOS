@@ -13,7 +13,7 @@ export const RemotionRoot: React.FC = () => {
 			<Composition
 				id="Elecciones2027"
 				component={Elecciones2027}
-				durationInFrames={540}
+				durationInFrames={708}
 				fps={30}
 				width={1920}
 				height={1080}
