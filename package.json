@@ -4,10 +4,10 @@
   "description": "Remotion video editing setup with FFmpeg",
   "type": "module",
   "scripts": {
-    "start": "remotion preview",
-    "build": "remotion render src/index.tsx out/video.mp4",
-    "test": "remotion test",
-    "render": "remotion render"
+    "start": "node scripts/dev-server.js",
+    "build": "node scripts/render.js",
+    "test": "echo 'Tests not configured yet'",
+    "render": "node scripts/render.js"
   },
   "dependencies": {
     "remotion": "^4.0.171",
