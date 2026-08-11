@@ -53,16 +53,16 @@ export const HelloWorld: React.FC = () => {
 ```
 /VIDEOS/
 ├── src/
-│   ├── index.tsx                      # Punto de entrada
+│   ├── index.tsx                      # Punto de entrada (registerRoot)
+│   ├── Root.tsx                       # Registro de composiciones
 │   ├── compositions/                  # Tus videos
 │   │   ├── HelloWorld.tsx            # Ejemplo básico
 │   │   └── AnimatedText.tsx          # Ejemplo con animaciones
 │   ├── components/                    # Componentes reutilizables
 │   └── utils/                         # Funciones de ayuda
 ├── scripts/
-│   ├── dev-server.js                 # Servidor de desarrollo
-│   ├── render.js                     # Script de renderizado
-│   └── setup-ffmpeg.js               # Configuración de FFmpeg
+│   ├── render.mjs                    # Script de renderizado (API)
+│   └── setup-ffmpeg.js               # Verificación de FFmpeg
 ├── out/                               # Videos renderizados
 ├── remotion.config.ts                # Config de Remotion
 ├── package.json                      # Dependencias

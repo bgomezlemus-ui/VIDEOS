@@ -1,20 +1,22 @@
-import { Config } from 'remotion';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { Config } from '@remotion/cli/config';
+import fs from 'fs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
+Config.setVideoImageFormat('jpeg');
 Config.setCodec('h264');
-Config.setAudioCodec('aac');
-Config.setFps(30);
-Config.setHeight(1080);
-Config.setWidth(1920);
-Config.setDurationInFrames(150);
+Config.setOverwriteOutput(true);
 
-// Configurar FFmpeg
-const ffmpegPath = path.join(__dirname, 'node_modules', 'ffmpeg-static', 'ffmpeg');
-Config.setFfmpegExecutable(ffmpegPath);
+// Usar el Chromium preinstalado del entorno si está disponible,
+// evitando la descarga automática de Chrome Headless Shell.
+const browserCandidates = [
+	process.env.REMOTION_BROWSER_EXECUTABLE,
+	process.env.CHROME_BIN,
+	'/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell',
+	'/opt/pw-browsers/chromium',
+].filter(Boolean) as string[];
 
-// Configurar configuraciones de salida
-Config.setOutputFormat('mp4');
-Config.setBrowserExecutable(process.env.CHROME_BIN || undefined);
+for (const candidate of browserCandidates) {
+	if (fs.existsSync(candidate)) {
+		Config.setBrowserExecutable(candidate);
+		break;
+	}
+}

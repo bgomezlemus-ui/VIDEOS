@@ -55,20 +55,26 @@ O renderiza una composición específica:
 npm run render -- --composition=HelloWorld
 ```
 
-### Opciones de renderizado avanzadas
+### Opciones de renderizado avanzadas (CLI oficial)
+
+Para opciones avanzadas usa el CLI de Remotion directamente:
+
 ```bash
-# Renderizar en formato WebM
-npm run render -- --codec=vp8 --output=out/video.webm
+# Renderizar una composición específica
+npx remotion render HelloWorld out/video.mp4
 
-# Renderizar solo audio
-npm run render -- --audio-codec=aac
+# Renderizar en formato WebM (VP8)
+npx remotion render HelloWorld out/video.webm --codec=vp8
 
-# Cambiar calidad/bitrate
-npm run render -- --quality=80
+# Cambiar calidad (CRF, menor = mejor calidad)
+npx remotion render HelloWorld out/video.mp4 --crf=18
 
-# Especificar número de workers (parallelización)
-npm run render -- --concurrency=4
+# Especificar número de workers (paralelización)
+npx remotion render HelloWorld out/video.mp4 --concurrency=4
 ```
+
+> El script `npm run render` (scripts/render.mjs) acepta `--composition` y
+> `--output`. Para el resto de flags usa `npx remotion render`.
 
 ## 🎬 Crear una nueva composición
 
